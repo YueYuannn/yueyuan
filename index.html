@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Title</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+    header h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+    header a {
+      text-decoration: none;
+      color: #007aff;
+      font-size: 14px;
+    }
+    .image-container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    .image-container img {
+      width: 100%;
+      display: block;
+      margin: 0 auto 40px auto;
+      border-radius: 4px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .image-container img.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Filter Pitch</h1>
+    <a href="../index.html">← Back to Home</a>
+  </header>
+
+  <div class="image-container">
+    <img src="images/01.jpg" alt="Project Image 1" />
+    <img src="images/02.jpg" alt="Project Image 2" />
+    <img src="images/03.jpg" alt="Project Image 3" />
+    <img src="images/04.jpg" alt="Project Image 4" />
+    <img src="images/05.jpg" alt="Project Image 5" />
+    <img src="images/06.jpg" alt="Project Image 6" />
+    <img src="images/07.jpg" alt="Project Image 7" />
+    <img src="images/08.jpg" alt="Project Image 8" />
+  </div>
+
+  <footer>
+    &copy; 2025 Yue Yuan | yueyuan.design | Contact: yyuan13@pratt.edu
+  </footer>
+
+  <script>
+    // Simple scroll animation
+    const imgs = document.querySelectorAll('img');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('loaded');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    imgs.forEach(img => observer.observe(img));
+  </script>
+</body>
+</html>
