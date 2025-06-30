@@ -74,27 +74,20 @@
       font-size: 14px;
       color: #888;
     }
-    @media (max-width: 768px) {
+   @media (max-width: 768px) {
   header {
     flex-direction: column;
-    align-items: flex-start; /* 左对齐 */
+    align-items: flex-start;
     gap: 4px;
   }
 
   .nav-links {
     display: flex;
     gap: 16px;
-    justify-content: flex-start; /* 也左对齐 */
+    justify-content: flex-start;
+    margin-left: 0;      /* 清除外边距 */
+    padding-left: 0;     /* 清除内边距 */
   }
-
-  /* 保留并排图片：删除这段 */
-  /*
-  .gallery-row.two img,
-  .gallery-row.three img {
-    width: 100% !important;
-    aspect-ratio: auto !important;
-  }
-  */
 }
 
   </style>
