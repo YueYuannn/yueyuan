@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuanyue Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0px 0px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+    .site-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #3b3b3b;
+      font-size: 18px;
+    }
+    .gallery {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 0px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .gallery-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .gallery-row.two img {
+      width: calc(50% - 10px);
+    }
+    .gallery-row.three img {
+      width: calc(33.33% - 10.66px);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .gallery img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+      border-radius: 0px;
+    }
+    .gallery img.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
+      color: #888;
+    }
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center; /* 原来是 flex-start，改成居中或可调 */
+    gap: 8px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* 移除以下强制图片竖排的规则 */
+  /*
+  .gallery-row.two img,
+  .gallery-row.three img {
+    width: 100% !important;
+    aspect-ratio: auto !important;
+  }
+  */
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-title">Yue Yuan</div>
+    <div class="nav-links">
+      <a href="#">Resume</a>
+      <a href="#">Projects</a>
+    </div>
+  </header>
+
+  <div class="gallery">
+    <!-- 第一张大图 -->
+    <img src="images/01.jpg" alt="Image 1" />
+
+    <!-- 两张图并排 -->
+    <div class="gallery-row two">
+      <img data-src="images/02.jpg" alt="Image 2" />
+      <img data-src="images/03.jpg" alt="Image 3" />
+    </div>
+
+    <!-- 一张大图 -->
+    <img src="images/04.jpg" alt="Image 4" />
+
+    <!-- 三张正方形图 -->
+    <div class="gallery-row three">
+      <img data-src="images/05.jpg" alt="Image 5" />
+      <img data-src="images/06.jpg" alt="Image 6" />
+      <img data-src="images/07.jpg" alt="Image 7" />
+    </div>
+  </div>
+
+  <footer>
+    Yuan Yue © 2025<br>
+    Phone: +86 18162606698<br>
+    Email: yueyuan312019@gmail.com<br>
+    WeChat: 18162606698
+  </footer>
+
+  <script>
+  const imgs = document.querySelectorAll('img');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+        }
+        img.classList.add('visible');
+        obs.unobserve(img);
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.3
+  });
+
+  imgs.forEach(img => observer.observe(img));
+</script>
+</body>
+</html>
